@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'firebase_options.dart';
+import 'pages/splash_screen.dart';
+import 'pages/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Firebase Auth Simple',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const AuthWrapper(),
+      home: const SplashScreen(),
     );
   }
 }
@@ -40,7 +42,7 @@ class AuthWrapper extends StatelessWidget {
         if (snapshot.hasData) {
           return UserInfoScreen(user: snapshot.data!);
         }
-        return const LoginScreen();
+        return const LoginPage();
       },
     );
   }
@@ -70,7 +72,6 @@ class _LoginScreenState extends State<LoginScreen> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
-      // Jika berhasil, AuthWrapper otomatis pindah ke UserInfoScreen
     } on FirebaseAuthException catch (e) {
       setState(() {
         _errorMessage = e.message ?? 'Terjadi kesalahan saat login.';
