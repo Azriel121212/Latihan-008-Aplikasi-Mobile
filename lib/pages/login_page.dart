@@ -36,7 +36,6 @@ class _LoginPageState extends State<LoginPage> {
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
-        // Kalau berhasil, AuthWrapper di main.dart otomatis pindah ke Dashboard
       } on FirebaseAuthException catch (e) {
         setState(() {
           _errorMessage = e.message ?? 'Email atau password salah.';
