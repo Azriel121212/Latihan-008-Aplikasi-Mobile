@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 
-/// Halaman yang dibuka ketika notifikasi di-klik.
 class NotificationDetailScreen extends StatelessWidget {
   final Map<String, dynamic> data;
   const NotificationDetailScreen({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
-    // Pisahkan title & body dari data tambahan
     final extraData = Map<String, dynamic>.from(data)
       ..remove('title')
       ..remove('body');
+
+    final isPromo = data['kategori'] == 'promo';
 
     return Scaffold(
       appBar: AppBar(title: const Text('Detail Notifikasi')),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          const Icon(
-            Icons.notifications_active,
+          Icon(
+            isPromo ? Icons.shopping_cart : Icons.notifications_active,
             size: 80,
             color: Colors.orange,
           ),
