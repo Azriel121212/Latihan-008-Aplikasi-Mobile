@@ -157,4 +157,12 @@ class NotificationService {
       WidgetsBinding.instance.addPostFrameCallback((_) => push());
     }
   }
+
+  static Future<void> subscribeToTopic(String topic) async {
+    await _messaging.subscribeToTopic(topic);
+  }
+
+  static Future<void> unsubscribeFromTopic(String topic) async {
+    await _messaging.unsubscribeFromTopic(topic);
+  }
 }
